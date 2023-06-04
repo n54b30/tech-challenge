@@ -21,7 +21,7 @@ I thoroughly enjoyed the entire process of developing this!
 - print_timestamp.py -> original code supplied 
 - main.py -> my Python code, this is a basic Flask Python app that launches a subprocess every time the function is called at the / of the webpage
 I included two other functions that return HTTP response 200 and 500 for the @app.route just so I can generate more replies for the integrated load tester and the Grafana dashboard.(more on that in just a sec!)
-Also comes with a library needed for exporting the metrics from the Flask application to a Prometheus instance. 
+Also introduced a library needed for exporting the metrics from the Flask application to a Prometheus instance. 
 
 ###  [Generator](https://github.com/n54b30/tech-challenge/tree/main/generator)
 - generate_events.py -> script that picks at random endpoints and keeps sending requests for generating load for testing autoscaling
