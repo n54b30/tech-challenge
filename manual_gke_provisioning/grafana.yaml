@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:5.1.0
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: grafana-config
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
+            - name: grafana-datasources
+              mountPath: /etc/grafana/provisioning/datasources/default.yaml
+              subPath: default.yaml
+            - name: grafana-dashboards
+              mountPath: /etc/grafana/provisioning/dashboards/default.yaml
+              subPath: default.yaml
+            - name: grafana-dashboards-volume
+              mountPath: /var/lib/grafana/dashboards/example.json
+              subPath: example.json
+      volumes:
+        - name: grafana-config
+          configMap:
+            name: grafana-cfg
+        - name: grafana-datasources
+          configMap:
+            name: grafana-data
+        - name: grafana-dashboards
+          configMap:
+            name: grafana-dash
+        - name: grafana-dashboards-volume
+          configMap:
+            name: grafana-dashvol
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  selector:
+    app: grafana
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer
