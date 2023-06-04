@@ -43,7 +43,7 @@ helm install my-demochart tech-challenge/demochart --version 0.1.0
 ### [Prometheus](https://github.com/n54b30/tech-challenge/tree/main/prometheus)
 - Prometheus and its config file
 
-### [Terraform](https://github.com/n54b30/tech-challenge/tree/main/Terraform)
+### Terraform
 - Will create a separate VPC and separate subnets for the Kubernetes cluster, create the K8 cluster and deploy the Helm chart
 - Will create a two node cluster with machine type: n1-standard-1
 - Requires helm, terraform, gcloud SDK and a service account key (json) with enough privileges. 
@@ -51,8 +51,8 @@ helm install my-demochart tech-challenge/demochart --version 0.1.0
 
 ### LINKS
 The GKE cluster will expose the Grafana dashboard and the Flask application at these links:
-GRAFANA = http://lb-ip:3000/d/_eX4mpl3
-FLASK = http://lb-ip:5000/
+- GRAFANA = http://lb-ip:3000/d/_eX4mpl3
+- FLASK = http://lb-ip:5000/
 
 ### Notes
 - Prometheus nor Grafana have any persistent volume claims, I would attach an NFS share in production for this. 
